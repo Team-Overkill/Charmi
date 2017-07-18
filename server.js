@@ -3,6 +3,7 @@ const express = require('express')
   , cors = require('cors')
   , massive = require('massive')
   , matchesCtrl = require('./server/matchesCtrl')
+  , conversationCtrl = require('./server/conversationCtrl')
   , config = require('./config')
   , port = 3000
   , app = express();
@@ -18,6 +19,7 @@ massive(config.dbURLString).then(function (db) {
 
 
 app.get('/matches', matchesCtrl.getAllMatches);
+app.get('/conversations', conversationCtrl.getConversations)
 
 
 app.listen(port, function () {

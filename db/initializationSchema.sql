@@ -7,6 +7,7 @@ drop table if exists messages cascade;
 drop table if exists photo_list cascade;
 drop table if exists state_list cascade;
 drop table if exists users cascade;
+drop table if exists user_matches cascade;
 
 create table users (
 id serial primary key,
