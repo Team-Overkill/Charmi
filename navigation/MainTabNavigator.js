@@ -32,13 +32,13 @@ export default TabNavigator(
         let iconName;
         switch (routeName) {
           case 'Home':
-            iconName = 'home';
+            iconName = 'heart-o';
             break;
           case 'Links':
-            iconName = 'book';
+            iconName = 'comments-o';
             break;
           case 'Settings':
-            iconName = 'cog';
+            iconName = 'sliders';
         }
         return (
           <FontAwesome

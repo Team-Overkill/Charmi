@@ -1,19 +1,17 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import { ExpoConfigView } from '@expo/samples';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
-    title: 'app.json',
+    title: 'Settings',
   };
 
   render() {
     return (
       <ScrollView style={styles.container}>
-
-        {/* Go ahead and delete ExpoConfigView and replace it with your
-           * content, we just wanted to give you a quick view of your config */}
-        <ExpoConfigView />
+        <Text>Pick for search age and slider for location etc </Text>
+        
 
       </ScrollView>
     );

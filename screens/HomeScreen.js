@@ -12,8 +12,20 @@ import {
   TouchableHighlight
 
 } from 'react-native';
-
+import Deck from '../components/Deck';
+import { Card, Button } from 'react-native-elements';
 import { MonoText } from '../components/StyledText';
+
+const DATA = [
+  { id: 1, text: 'Jenni, 28', uri: 'https://static.pexels.com/photos/38554/girl-people-landscape-sun-38554.jpeg' },
+  { id: 2, text: 'Card #2', uri: 'http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg' },
+  { id: 3, text: 'Card #3', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg' },
+  { id: 4, text: 'Card #4', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg' },
+  { id: 5, text: 'Card #5', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg' },
+  { id: 6, text: 'Card #6', uri: 'http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg' },
+  { id: 7, text: 'Card #7', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg' },
+  { id: 8, text: 'Card #8', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg' },
+];
 class ModalExample extends React.Component {
 
   state = {
@@ -35,12 +47,15 @@ class ModalExample extends React.Component {
           >
          <View style={{marginTop: 22}}>
           <View>
-            <Text>Hello World!</Text>
+            <Text>This is my Profile</Text>
+            <Text>About Me: I am so cool</Text>
+            <Text>From: Utah</Text>
+            <Text>This is lame need ot put a header and ....</Text>
 
             <TouchableHighlight onPress={() => {
               this.setModalVisible(!this.state.modalVisible)
             }}>
-              <Text>Hide Modal</Text>
+              <Text style={{width: 205, marginTop: 62, marginRight: 55, padding:25, backgroundColor: '#1A20FF'}}>Close Profile</Text>
             </TouchableHighlight>
 
           </View>
@@ -50,7 +65,7 @@ class ModalExample extends React.Component {
         <TouchableHighlight onPress={() => {
           this.setModalVisible(true)
         }}>
-          <Text>Show Modal</Text>
+          <Text>Profile</Text>
         </TouchableHighlight>
 
       </View>
@@ -61,12 +76,60 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+  state = {
+    modalVisible: false,
+  }
 
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+renderCard(item) {
+    return (
+          <Card
+        key={item.id}
+        title={item.text}
+        image={{ uri: item.uri }}
+      >
+        {/* <Text style={{ marginBottom: 10 }}>
+          I can customize the Card further.
+        </Text> */}
+        <ModalExample/>
+        <Button
+        onPress={() => {
+          this.setModalVisible(true).bind(this)
+        }}
+          icon={{ name: 'portrait' }}
+          backgroundColor="#03A9F4"
+          title="View Profile!"
+        />
+      </Card>
+    );
+  }
+  renderNoMoreCards() {
+    return (
+      <Card title="All Done!">
+        <Text style={{ marginBottom: 10 }}>
+          There's no more content here!
+        </Text>
+        <Button
+          backgroundColor="#03A9F4"
+          title="Get more!"
+        />
+      </Card>
+    );
+  }
   render() {
     return (
       
 <View>
-  <ModalExample/>
+  <View style={styles.container}>
+        <Deck
+          data={DATA}
+          renderCard={this.renderCard}
+          renderNoMoreCards={this.renderNoMoreCards}
+        />
+      </View>
+  
 </View>
           
         
@@ -111,6 +174,7 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     flex: 1,
     backgroundColor: '#fff',
   },
