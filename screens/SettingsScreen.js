@@ -1,19 +1,26 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
-import { ExpoConfigView } from '@expo/samples';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Slider } from 'react-native-elements';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings',
   };
+state = {
+  value: 8
+
+}
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <Text>Pick for search age and slider for location etc </Text>
-        
-
-      </ScrollView>
+      
+        <View style={{ justifyContent: 'center', width: 300 }}>
+  <Slider
+    value={this.state.value}
+    onValueChange={(value) => this.setState({value})} />
+  <Text>Value: {this.state.value}</Text>
+</View>
+      
     );
   }
 }
