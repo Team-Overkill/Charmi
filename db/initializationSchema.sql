@@ -7,7 +7,6 @@ drop table if exists messages cascade;
 drop table if exists photo_list cascade;
 drop table if exists state_list cascade;
 drop table if exists users cascade;
-drop table if exists user_matches cascade;
 
 create table users (
 id serial primary key,
@@ -51,10 +50,6 @@ create table matches_list (
 id serial primary key
 );
 
-create table user_matches (
-id serial primary key
-);
-
 create table hangout_list (
 id serial primary key,
 hangouts text
@@ -77,8 +72,7 @@ alter table users
   add column home_state_id integer references state_list (id),
   add column interests_id integer references interests_list (id),
   add column matches_id integer references matches_list (id),
-  add column photo_list_id integer references photo_list (id),
-  add column user_matches_id integer references user_matches (id);
+  add column photo_list_id integer references photo_list (id);
 
 alter table messages
   add column conversation_id integer references conversation_list (id),
@@ -92,8 +86,7 @@ alter table interests_list
 
 alter table matches_list
   add column matched_user_id integer references users (id),
-  add column user_id integer references users (id),
-  add column user_matches_id integer references user_matches (id);
+  add column user_id integer references users (id);
 
 alter table hangout_list
   add column user_id integer references users (id);
