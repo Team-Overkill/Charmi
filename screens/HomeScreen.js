@@ -15,6 +15,7 @@ import {
 import Deck from '../components/Deck';
 import { Card, Button } from 'react-native-elements';
 import { MonoText } from '../components/StyledText';
+import { FontAwesome } from '@expo/vector-icons';
 
 const DATA = [
   { id: 1, text: 'Jenni, 28', uri: 'https://static.pexels.com/photos/38554/girl-people-landscape-sun-38554.jpeg' },
@@ -65,7 +66,10 @@ class ModalExample extends React.Component {
         <TouchableHighlight onPress={() => {
           this.setModalVisible(true)
         }}>
-          <Text>Profile</Text>
+          <Text style={styles.profileButton}>View Profile<FontAwesome
+            name={'user-circle'}
+            size={32}
+           /></Text>
         </TouchableHighlight>
 
       </View>
@@ -84,8 +88,13 @@ export default class HomeScreen extends React.Component {
     this.setState({modalVisible: visible});
   }
 renderCard(item) {
+   
     return (
-          <Card
+          <View style={{flex: 1}}>
+            
+            <Card
+          containerStyle={{ height: 555, marginTop: -15}}
+          imageStyle={{height:400}}
         key={item.id}
         title={item.text}
         image={{ uri: item.uri }}
@@ -94,17 +103,19 @@ renderCard(item) {
           I can customize the Card further.
         </Text> */}
         <ModalExample/>
-        <Button
+        {/* <Button
         onPress={() => {
           this.setModalVisible(true).bind(this)
         }}
           icon={{ name: 'portrait' }}
           backgroundColor="#03A9F4"
           title="View Profile!"
-        />
+        /> */}
       </Card>
+      </View>
     );
   }
+
   renderNoMoreCards() {
     return (
       <Card title="All Done!">
@@ -122,11 +133,16 @@ renderCard(item) {
     return (
       
 <View>
+  <View style={styles.viewStyle}>
+      <Text >Charmi</Text>
+    </View>
   <View style={styles.container}>
         <Deck
           data={DATA}
           renderCard={this.renderCard}
           renderNoMoreCards={this.renderNoMoreCards}
+          onSwipeRight={this.onSwipeRight}
+          onSwipeLeft={this.onSwipeLeft}
         />
       </View>
   
@@ -259,4 +275,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+   viewStyle: {
+    backgroundColor: '#F8F8F8',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 60,
+    paddingTop: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    elevation: 2,
+    position: 'relative'
+  },
+  profileButton: {
+    padding: 25,
+    backgroundColor:"#03A9F4",
+    justifyContent: 'center',
+    flex: 1,
+    
+  }
 });
