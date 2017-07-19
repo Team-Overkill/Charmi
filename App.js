@@ -38,12 +38,14 @@ export default class AppContainer extends React.Component {
   render() {
     if (this.state.appIsReady) {
       return (
+        
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           {Platform.OS === 'android' &&
             <View style={styles.statusBarUnderlay} />}
           <RootNavigation />
         </View>
+        
       );
     } else {
       return <AppLoading />;

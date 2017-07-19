@@ -11,6 +11,7 @@ import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import MessagesScreen from '../screens/MessagesScreen'
 
 export default TabNavigator(
   {
@@ -23,6 +24,9 @@ export default TabNavigator(
     Settings: {
       screen: SettingsScreen,
     },
+    Messages: {
+      screen: MessagesScreen
+    }
   },
   {
     navigationOptions: ({ navigation }) => ({
