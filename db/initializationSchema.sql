@@ -1,4 +1,3 @@
-drop table if exists album cascade;
 drop table if exists blocked_user_list cascade;
 drop table if exists conversation_list cascade;
 drop table if exists hangout_list cascade;
@@ -8,10 +7,6 @@ drop table if exists messages cascade;
 drop table if exists photo_list cascade;
 drop table if exists state_list cascade;
 drop table if exists users cascade;
-
-create table album (
-  id serial primary key
-);
 
 create table blocked_user_list (
   id serial primary key
@@ -96,15 +91,7 @@ alter table messages
   add column user_id integer references users (id);
 
 alter table photo_list
-  add column user_id integer references users (id),
-  add column album_id integer references album (id);
+  add column user_id integer references users (id);
 
 alter table users
-  add column album_id integer references album (id),
-  add column blocked_user_id integer references blocked_user_list (id),
-  add column conversation_id integer references conversation_list (id),
-  add column hangouts_id integer references hangout_list (id),
-  add column home_state_id integer references state_list (id),
-  add column interests_id integer references interests_list (id),
-  add column matches_id integer references matches_list (id),
-  add column photo_list_id integer references photo_list (id);
+  add column home_state_id integer references state_list (id);
