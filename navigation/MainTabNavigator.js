@@ -52,6 +52,7 @@ export default TabNavigator(
     // Put tab bar on bottom of screen on both platforms
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
+    swipeEnabled: false,
     // Disable animation so that iOS/Android have same behaviors
     animationEnabled: false,
     // Don't show the labels
